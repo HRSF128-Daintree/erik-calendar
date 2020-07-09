@@ -39,6 +39,21 @@ const hotelSchema = new mongoose.Schema({
   prices: [ {serviceName: String, price: Number} ]
 });
 
+// CREATE TABLE "my_hotels" (
+//   id int,
+//   hotel text,
+//   rooms int,
+//   guestPerRoom int,
+//   PRIMARY KEY ((hotel, id), id)
+// )
+
+// CREATE TABLE "bookings" (
+//   hotel hotel,
+//   booked boolean,
+//   date text,
+//   PRIMARY KEY (())
+// )
+
 const HotelClass = mongoose.model('hotels', hotelSchema);
 
 module.exports.model = HotelClass;
