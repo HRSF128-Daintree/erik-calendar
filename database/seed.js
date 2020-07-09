@@ -2,6 +2,8 @@ const faker = require('faker');
 const database = require('./index.js');
 const moment = require('moment');
 
+database.connection.dropDatabase();
+
 const randomPrice = (min, max) => {
   const temp = min + Math.random() * (max - min);
   return temp < min * 1.1 || temp > max * 0.9 ? null : temp;

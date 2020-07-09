@@ -22,11 +22,53 @@ app.get('/api/calendar/db/:hotelIdOrName', (req, res) => {
   let parsed = parseInt(q);
   if (parsed) {
     search = {'id': q};
-    console.log(search);
+    console.log('search', search);
   } else {
     search = {'hotelName': {'$regex': q.slice(0, 1).toUpperCase() + q.slice(1)}};
   }
   db.model.find(search, (err, data) => {
+    console.log('QUERY SENT');
+    if (err) {
+      console.log('DB QUERY ERROR', err);
+      res.status(400).send();
+    } else {
+      console.log('DB QUERY SUCCESS');
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/api/calendar/db/:hotelIdOrName', (req, res) => {
+  let dank = new db.model({ id: req.params.hotelIdOrName, hotelName: 'Hilton', roomsTotal: 1, maxGuestPerRoom: 1, vacancy: [ { date: '2020-4-20', isBooked: false } ], prices: [ { serviceName: 'Hotels.com', price: 299.99 } ] });
+  db.model.create(dank, (err, data) => {
+    console.log('QUERY SENT');
+    if (err) {
+      console.log('DB QUERY ERROR', err);
+      res.status(400).send();
+    } else {
+      console.log('DB QUERY SUCCESS');
+      res.status(201).send(data);
+    }
+  });
+});
+
+app.put('/api/calendar/db/:hotelIdOrName', (req, res) => {
+  const query = { id: req.params.hotelIdOrName };
+  db.model.findOneAndUpdate(query, { roomsTotal: 1 }, (err, data) => {
+    console.log('QUERY SENT');
+    if (err) {
+      console.log('DB QUERY ERROR', err);
+      res.status(400).send();
+    } else {
+      console.log('DB QUERY SUCCESS');
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.delete('/api/calendar/db/:hotelIdOrName', (req, res) => {
+  const query = { id: req.params.hotelIdOrName };
+  db.model.findOneAndDelete(query, (err, data) => {
     console.log('QUERY SENT');
     if (err) {
       console.log('DB QUERY ERROR', err);
