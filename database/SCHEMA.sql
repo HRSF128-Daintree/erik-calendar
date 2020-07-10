@@ -2,33 +2,33 @@ CREATE SCHEMA calendar;
 
 CREATE TABLE calendar.hotels (
   hotel_id SERIAL INTEGER NOT NULL,
+  room_id SERIAL INTEGER REFERENCES calendar.rooms,
+  user_id INTEGER REFERENCES calendar.users,
   hotel_name VARCHAR(30) NOT NULL,
   total_rooms INTEGER NOT NULL,
-  hotel_location DECIMAL (2, 3),
-  bookings_id INTEGER REFERENCES calendar.bookings(booking_id),
-  PRIMARY KEY (hotel_id, bookings_id)
+  hotel_address VARCHAR (30) NOT NULL,
+  checkin_date VARCHAR(20) NOT NULL,
+  checkout_date VARCHAR(20) NOT NULL,
+  hotel_service VARCHAR(20) NOT NULL,
+  adults INT,
+  children INT,
+  rooms INT,
+  price INT,
+  PRIMARY KEY (hotel_id, room_id, user_id)
 );
 
-CREATE TABLE calendar.bookings(
-  booking_id SERIAL INTEGER NOT NULL,
-  booking_dates text ARRAY,
+CREATE TABLE calendar.rooms (
+  room_id SERIAL INTEGER NOT NULL,
+  capacity INT,
   is_booked BOOLEAN,
-  service_id INTEGER REFERENCES calendar.services(services_id),
-  PRIMARY KEY (booking_id)
-);
+  PRIMARY KEY (room_id)
+)
 
 CREATE TABLE calendar.users(
   user_id SERIAL INTEGER NOT NULL,
   user_bookings text[],
-  user_location DECIMAL (2, 3),
-  booking_ids INTEGER REFERENCES calendar.bookings(booking_id),
+  email VARCHAR(30) NOT NULL,
+  home_address VARCHAR(30) NOT NULL,
   guest BOOLEAN,
-  PRIMARY KEY (user_id, booking_ids)
-);
-
-CREATE TABLE calendar.services(
-  services_id SERIAL INTEGER NOT NULL,
-  services_name text,
-  prices INTEGER,
-  PRIMARY KEY (services_id)
+  PRIMARY KEY (user_id)
 );

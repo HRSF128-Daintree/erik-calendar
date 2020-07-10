@@ -1,7 +1,7 @@
 ## Server API
 
 # Get hotel info
-  * GET `/api/calendar/:hotelIdOrName`
+  * GET `/api/hotel/:hotelIdOrName/calendar`
 
 **Path Parameters:**
  * `id` hotel id
@@ -22,7 +22,7 @@
 ```
 
 ### Add booking
-  * POST `/api/calendar/:hotelIdOrName/booking`
+  * POST `/api/hotel/:hotelIdOrName/calendar/booking`
 
 **Success Status Code:** `201`
 
@@ -40,12 +40,12 @@
 ```
 
 ### Delete booking
-  * DELETE `/api/calendar/:hotelIdOrName/user/:userId/booking/:bookingId`
+  * DELETE `/api/hotel/:hotelIdOrName/calendar/user/:userId/booking/:bookingId`
 
 **Success Status Code:** `204`
 
 ### Update booking
-  * PATCH `/api/calendar/:hotelIdOrName/user/:userId/booking/:bookingId`
+  * PATCH `/api/hotel/:hotelIdOrName/calendar/user/:userId/booking/:bookingId`
 
 **Success Status Code:** `201`
 
