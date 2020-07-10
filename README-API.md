@@ -1,7 +1,7 @@
 ## Server API
 
 # Get hotel info
-  * GET `/api/calendar/db/:hotelIdOrName`
+  * GET `/api/calendar/:hotelIdOrName`
 
 **Path Parameters:**
  * `id` hotel id
@@ -12,40 +12,40 @@
 
  ```json
     {
-      "id": "Number",
+      "hotel_id": "Number",
       "hotelName": "String",
       "roomsTotal": "Number",
       "maxGuestPerRoom": "Number",
-      "vacancy": [ {"date": "String", "isBooked": "Boolean"} ],
+      "bookings": [ {"date": "String", "isBooked": "Boolean"} ],
       "prices": [ {"serviceName": "String", "price": "Number"} ]
     }
 ```
 
-### Add hotel
-  * POST `/api/calendar/db/:hotelIdOrName`
+### Add booking
+  * POST `/api/calendar/:hotelIdOrName/booking`
 
 **Success Status Code:** `201`
 
-**Request Body**: Expects JSON with the following keys.
+**Request Body**: Expects JSON with the following keys. (user_id, hotel_id required)
 
 ```json
     {
-        "id": "Number",
-        "hotelName": "String",
-        "roomsTotal": "Number",
-        "maxGuestPerRoom": "Number",
-        "vacancy": [ {"date": "String", "isBooked": "Boolean"} ],
-        "prices": [ {"serviceName": "String", "price": "Number"} ]
+        "user_id": "String",
+        "hotel_id": "Number",
+        "guests": "Number",
+        "checkin": "String",
+        "checkout": "String",
+        "price": "Number"
     }
 ```
 
-### Delete hotel
-  * DELETE `/api/calendar/db/:hotelIdOrName`
+### Delete booking
+  * DELETE `/api/calendar/:hotelIdOrName/user/:userId/booking/:bookingId`
 
 **Success Status Code:** `204`
 
-### Update hotel
-  * POST `/api/calendar/db/:hotelIdOrName`
+### Update booking
+  * PATCH `/api/calendar/:hotelIdOrName/user/:userId/booking/:bookingId`
 
 **Success Status Code:** `201`
 
@@ -53,10 +53,10 @@
 
 ```json
     {
-        "id": "Number",
-        "hotelName": "String",
-        "roomsTotal": "Number",
-        "maxGuestPerRoom": "Number",
-        "vacancy": [ {"date": "String", "isBooked": "Boolean"} ],
-        "prices": [ {"serviceName": "String", "price": "Number"} ]
+        "hotel_id": "Number",
+        "user_id": "Number",
+        "booking_id": "Number",
+        "checkin": "String",
+        "checkout": "String",
+        "occupants": "Number",
     }

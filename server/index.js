@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
 const port = 3001;
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const parser = require('body-parser');
 const db = require('../database/index.js');
-const moment = require('moment');
-const cors = require('cors');
-app.use(cors());
+// const moment = require('moment');
+// const cors = require('cors');
+// app.use(cors());
 
 app.listen(port, () => console.log(`App listening on http://localhost:${port}`));
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(parser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
