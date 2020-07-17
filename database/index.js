@@ -44,35 +44,35 @@
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 */
 
-const ExpressCassandra = require('express-cassandra');
-const Models = ExpressCassandra.createClient({
-  clientOptions: {
-    contactPoints: ['127.0.0.1'],
-    protocolOptions: { port: 9042 },
-    keyspace: 'test',
-    queryOptions: { consistency: ExpressCassandra.consistencies.one }
-  },
-  ormOptions: {
-    defaultReplicationStrategy: {
-      class: 'SimpleStrategy',
-      'replication_factor': 1
-    },
-    migration: 'safe'
-  }
-});
+// const ExpressCassandra = require('express-cassandra');
+// const Models = ExpressCassandra.createClient({
+//   clientOptions: {
+//     contactPoints: ['127.0.0.1'],
+//     protocolOptions: { port: 9042 },
+//     keyspace: 'test',
+//     queryOptions: { consistency: ExpressCassandra.consistencies.one }
+//   },
+//   ormOptions: {
+//     defaultReplicationStrategy: {
+//       class: 'SimpleStrategy',
+//       'replication_factor': 1
+//     },
+//     migration: 'safe'
+//   }
+// });
 
-const MyModel = Models.loadSchema('Hotel', {
-  fields: {
-    'hotel_Id': {
-      type: 'uuid',
-      default: { '$db_function': 'uuid()' },
-    },
-    name: 'text',
-    brand: 'text',
-    rooms: 'int',
-  },
-  key: ['hotel_Id']
-});
+// const MyModel = Models.loadSchema('Hotel', {
+//   fields: {
+//     'hotel_Id': {
+//       type: 'uuid',
+//       default: { '$db_function': 'uuid()' },
+//     },
+//     name: 'text',
+//     brand: 'text',
+//     rooms: 'int',
+//   },
+//   key: ['hotel_Id']
+// });
 
 // MyModel = Models.loadSchema('Bookings', {
 //   fields: {
@@ -80,13 +80,13 @@ const MyModel = Models.loadSchema('Hotel', {
 //   }
 // })
 
-console.log(Models.instance.Hotel === MyModel);
+// console.log(Models.instance.Hotel === MyModel);
 
-MyModel.syncDB((err, result) => {
-  if (err) {
-    throw err;
-  }
-});
+// MyModel.syncDB((err, result) => {
+//   if (err) {
+//     throw err;
+//   }
+// });
 
 // CREATE TABLE "my_hotels" (
 //   hotel_id uuid PRIMARY KEY,
@@ -119,15 +119,15 @@ MyModel.syncDB((err, result) => {
 
 // module.exports.model = HotelClass;
 // module.exports.connection = client;
-Models.export(__dirname + '/fixtures', (err) => {
-  if (err) {
-    throw err;
-  }
-});
+// Models.export(__dirname + '/fixtures', (err) => {
+//   if (err) {
+//     throw err;
+//   }
+// });
 
-Models.import(__dirname + '/fixtures', { batchSize: 10000 }, (err) => {
-  if (err) {
-    throw err;
-  }
-});
+// Models.import(__dirname + '/fixtures', { batchSize: 10000 }, (err) => {
+//   if (err) {
+//     throw err;
+//   }
+// });
 

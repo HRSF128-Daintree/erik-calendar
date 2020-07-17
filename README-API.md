@@ -16,8 +16,7 @@
       "hotelName": "String",
       "roomsTotal": "Number",
       "maxGuestPerRoom": "Number",
-      "bookings": [ {"date": "String", "isBooked": "Boolean"} ],
-      "prices": [ {"serviceName": "String", "price": "Number"} ]
+      "dates": "[ "String" ]",
     }
 ```
 
@@ -30,12 +29,14 @@
 
 ```json
     {
-        "user_id": "String",
+        "user_id": "Number",
         "hotel_id": "Number",
+        "room_id": "Number",
         "guests": "Number",
+        "rooms": "Number",
         "checkin": "String",
         "checkout": "String",
-        "price": "Number"
+        "service": "String",
     }
 ```
 
@@ -55,7 +56,8 @@
     {
         "hotel_id": "Number",
         "user_id": "Number",
-        "booking_id": "Number",
+        "room_id": "Number",
+        "rooms": "Number",
         "checkin": "String",
         "checkout": "String",
         "occupants": "Number",
