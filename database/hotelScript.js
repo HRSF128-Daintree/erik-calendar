@@ -117,7 +117,7 @@ const writeTenMillionHotels = (writer, encoding, callback) => {
       if (i === 0) {
         writer.write(row, encoding, callback);
       } else {
-        ok = writer.write(row);
+        ok = writer.write(row, encoding);
       }
     }
     if (i > 0) {
