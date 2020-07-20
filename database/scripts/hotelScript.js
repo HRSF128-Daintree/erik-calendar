@@ -53,7 +53,7 @@ const availableRooms = [];
 
 const hotelInfo = [];
 
-const hotels = ['Hyatt Hotel', 'The Merriot', 'MGM Grand', 'The Ambassador', 'Holiday Inn', 'Red Log Cabin', 'Hilton', 'Four Seasons Resort', 'The Hotel California', 'Joe\'s Crab Shack', 'A Cardboard Box', 'Generic Lodge', 'The Death Star', 'The Shire', 'The Moon', 'Oscar\'s Trash Can', 'McDonald Playplace', 'Shrek\'s Swamp'];
+const hotels = ['Hyatt Hotel', 'The Merriot', 'MGM Grand', 'The Ambassador', 'Holiday Inn', 'Red Log Cabin', 'Hilton', 'Four Seasons Resort', 'The Hotel California', 'Joes Crab Shack', 'A Cardboard Box', 'Generic Lodge', 'The Death Star', 'The Shire', 'The Moon', 'Oscars Trash Can', 'McDonald Playplace', 'Shreks Swamp'];
 
 let startDate = moment('2020-01-01');
 
@@ -91,7 +91,7 @@ const start = [process.memoryUsage().heapUsed];
 
 let fileNum = 0;
 
-const writeHotels = fs.createWriteStream(__dirname + `/csvFiles/hotels${fileNum}.csv`);
+const writeHotels = fs.createWriteStream(__dirname + `/../csvFiles/hotels${fileNum}.csv`);
 const hHeaders = 'hotel_id,hotel,address,zipcode,checkin,checkout,adults,children,adult_price,children_price,guest_id,booking_id,email,phone_number,full_name\n';
 writeHotels.write(hHeaders, 'utf8');
 
@@ -117,7 +117,7 @@ const writeTenMillionHotels = (writer, encoding, callback) => {
       if (i === 0) {
         writer.write(row, encoding, callback);
       } else {
-        ok = writer.write(row);
+        ok = writer.write(row, encoding);
       }
     }
     if (i > 0) {
