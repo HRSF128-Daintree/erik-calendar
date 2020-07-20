@@ -34,8 +34,8 @@ const start = [process.memoryUsage().heapUsed];
 
 let fileNum = 0;
 
-const writeUsers = fs.createWriteStream(__dirname + `/csvFiles/users${fileNum}.csv`);
-const uHeaders = 'guest_id,email,full_name,phone_number\n';
+const writeUsers = fs.createWriteStream(__dirname + `/../csvFiles/usersSQL${fileNum}.csv`);
+const uHeaders = 'email,home_address,full_name,phone_number\n';
 writeUsers.write(uHeaders, 'utf8');
 
 const writeTenMillionUsers = (writer, encoding, callback) => {
@@ -52,15 +52,15 @@ const writeTenMillionUsers = (writer, encoding, callback) => {
         console.log(`${Math.round(used * 100) / 100} MB`);
         console.log(id);
       }
-      const guest_id = id;
       const email = faker.internet.email();
+      const home_address = faker.address.streetAddress() + ' ' + faker.address.streetName() + ' ' + faker.address.city() + ' ' + faker.address.zipCode();
       const full_name = faker.name.findName();
       const phone_number = faker.phone.phoneNumber();
-      const row = `${guest_id},${email},${full_name},${phone_number}\n`;
+      const row = `${email},${home_address},${full_name},${phone_number}\n`;
       if (i === 0) {
         writer.write(row, encoding, callback);
       } else {
-        ok = writer.write(row);
+        ok = writer.write(row, encoding);
       }
     }
     if (i > 0) {
