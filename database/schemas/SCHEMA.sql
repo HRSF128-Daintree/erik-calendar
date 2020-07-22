@@ -10,7 +10,10 @@ CREATE TABLE hotel.hotels (
   zipcode VARCHAR(20) NOT NULL
 );
 
-\COPY hotel.hotels (hotel,address,zipcode) FROM '~/calendar/database/csvFiles/hotelsSQL0.csv' DELIMITER ',' CSV HEADER;
+\COPY hotel.hotels (hotel,address,zipcode) FROM '~/calendar/database/csvFiles/hotelsSQL1.csv' DELIMITER ',' CSV HEADER;
+\COPY hotel.hotels (hotel,address,zipcode) FROM '~/calendar/database/csvFiles/hotelsSQL2.csv' DELIMITER ',' CSV;
+\COPY hotel.hotels (hotel,address,zipcode) FROM '~/calendar/database/csvFiles/hotelsSQL3.csv' DELIMITER ',' CSV;
+\COPY hotel.hotels (hotel,address,zipcode) FROM '~/calendar/database/csvFiles/hotelsSQL4.csv' DELIMITER ',' CSV;
 
 CREATE TABLE hotel.users(
   email VARCHAR(50) NOT NULL,
@@ -19,7 +22,10 @@ CREATE TABLE hotel.users(
   phone_number VARCHAR(30) NOT NULL
 );
 
-\COPY hotel.users (email,home_address,full_name,phone_number) FROM '~/calendar/database/csvFiles/usersSQL0.csv' DELIMITER ',' CSV HEADER;
+\COPY hotel.users (email,home_address,full_name,phone_number) FROM '~/calendar/database/csvFiles/usersSQL1.csv' DELIMITER ',' CSV HEADER;
+\COPY hotel.users (email,home_address,full_name,phone_number) FROM '~/calendar/database/csvFiles/usersSQL2.csv' DELIMITER ',' CSV;
+\COPY hotel.users (email,home_address,full_name,phone_number) FROM '~/calendar/database/csvFiles/usersSQL3.csv' DELIMITER ',' CSV;
+\COPY hotel.users (email,home_address,full_name,phone_number) FROM '~/calendar/database/csvFiles/usersSQL4.csv' DELIMITER ',' CSV;
 
 
 CREATE TABLE hotel.bookings (
@@ -31,7 +37,10 @@ CREATE TABLE hotel.bookings (
   children_price INT
 );
 
-\COPY hotel.bookings (checkin,checkout,adults,children,adult_price,children_price) FROM '~/calendar/database/csvFiles/bookingsSQL0.csv' DELIMITER ',' CSV HEADER;
+\COPY hotel.bookings (checkin,checkout,adults,children,adult_price,children_price) FROM '~/calendar/database/csvFiles/bookingsSQL1.csv' DELIMITER ',' CSV HEADER;
+\COPY hotel.bookings (checkin,checkout,adults,children,adult_price,children_price) FROM '~/calendar/database/csvFiles/bookingsSQL2.csv' DELIMITER ',' CSV;
+\COPY hotel.bookings (checkin,checkout,adults,children,adult_price,children_price) FROM '~/calendar/database/csvFiles/bookingsSQL3.csv' DELIMITER ',' CSV;
+\COPY hotel.bookings (checkin,checkout,adults,children,adult_price,children_price) FROM '~/calendar/database/csvFiles/bookingsSQL4.csv' DELIMITER ',' CSV;
 
 ALTER TABLE hotel.hotels ADD COLUMN hotel_id SERIAL PRIMARY KEY;
 ALTER TABLE hotel.users ADD COLUMN guest_id SERIAL PRIMARY KEY;
