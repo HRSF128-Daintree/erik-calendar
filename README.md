@@ -1,13 +1,12 @@
-# Project Name
+# Calendar
 
-> Project description
+> Calendar component of a hotel booking web application
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/HRSF128-Daintree/about
+  - https://github.com/HRSF128-Daintree/jin-carousel
+  - https://github.com/HRSF128-Daintree/reviews2
 
 ## Table of Contents
 
@@ -17,7 +16,8 @@
 
 ## Usage
 
-> Some usage instructions
+> npm start
+> npm run react-dev
 
 ## Requirements
 
