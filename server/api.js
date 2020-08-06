@@ -25,9 +25,33 @@ if (cluster.isMaster) {
 
   app.use(express.static('public'));
 
-  app.get('/api/hotel/:hotelId/calendar', controller.getHotelById);
+  app.get('/api/hotel/:hotelId/calendar', (req, res) => {
+    controller.getHotelByZipcode(req.params.zipcode, (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  });
 
-  app.get('/api/zipcode/:zipcode/calendar', controller.getHotelByZipcode);
+  app.get('/api/zipcode/:zipcode/calendar', (req, res) => {
+    controller.getHotelByZipcode(req.params.adultprice, (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  });
 
-  app.get('/api/bookings/:adultprice/calendar', controller.getBookingsByAdultPrice);
+  app.get('/api/bookings/:adultprice/calendar', (req, res) => {
+    controller.getBookingsByAdultPrice(req.params.hotelId, (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  });
 }
