@@ -1,54 +1,33 @@
 const Model = require('../models/hotelModels.js');
 
 const getHotelByZipcode = (zc, cb) => {
-  Model.pool
-    .connect()
-    .then(client => {
-      return client
-        .query(`SELECT * FROM hotel.hotels WHERE zipcode = '${zc}';`)
-        .then(res => {
-          client.release();
-          cb(null, res.rows);
-        })
-        .catch(err => {
-          client.release();
-          console.log(err.stack);
-        });
-    });
+  Model.getHotelByZipcode(zc, (err, data) => {
+    if (err) {
+      cb(err, null);
+    } else {
+      cb(null, data);
+    }
+  });
 };
 
 const getBookingsByAdultPrice = (price, cb) => {
-  Model.pool
-    .connect()
-    .then(client => {
-      return client
-        .query(`SELECT * FROM hotel.bookings WHERE adult_price < ${price} LIMIT 100;`)
-        .then(res => {
-          client.release();
-          cb(null, res.rows);
-        })
-        .catch(err => {
-          client.release();
-          console.log(err.stack);
-        });
-    });
+  Model.getBookingsByAdultPrice(price, (err, data) => {
+    if (err) {
+      cb(err, null);
+    } else {
+      cb(null, data);
+    }
+  });
 };
 
 const getHotelById = (id, cb) => {
-  Model.pool
-    .connect()
-    .then(client => {
-      return client
-        .query(`SELECT * FROM hotel.hotels WHERE hotel_id = ${id};`)
-        .then(res => {
-          client.release();
-          cb(null, res.rows);
-        })
-        .catch(err => {
-          client.release();
-          console.log(err.stack);
-        });
-    });
+  Model.getBookingsByAdultPrice(id, (err, data) => {
+    if (err) {
+      cb(err, null);
+    } else {
+      cb(null, data);
+    }
+  });
 };
 
 module.exports = {

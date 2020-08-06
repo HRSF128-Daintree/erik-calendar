@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS hotel.bookings_by_guests (
   checkout text,
   adult_price int,
   children_price int,
-  PRIMARY KEY (guest_id, month)
+  PRIMARY KEY ((hotel_id, month), guest_id)
   )
-  WITH CLUSTERING ORDER BY (month ASC)
+  WITH CLUSTERING ORDER BY (guest_id ASC)
     AND bloom_filter_fp_chance=0.01;
 
 
